@@ -356,7 +356,7 @@ export default function LinkedSearchDatasetVarTable({linkedSearchPathList, searc
                         )
                     )
                 ):(
-                    <></>
+                    <><Spinner animation="border" variant="secondary" /></>
                 )
             }  
             </div >
