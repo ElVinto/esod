@@ -13,6 +13,8 @@ export default function RetrievedDatasetVarTable({searchTerm, kbUri, setDatasetU
 
     const [fetchingData, setFetchingData] = useState(false);
 
+    //const [loadingTable, setLoadingTable] = useState(false);
+
     const [selectedDataHub,setSelectedDataHub] = useState('');
 
     const [selectedDataHubBindings,setSelectedDataHubBindings] = useState([]);
@@ -169,42 +171,52 @@ export default function RetrievedDatasetVarTable({searchTerm, kbUri, setDatasetU
     }
 
     function handleSelect (eventKey) {
-        setSelectedDataHub(eventKey)
+        if(eventKey!=selectedDataHub){
+            setSelectedDataHubBindings([]); // hack
+        }
+        setSelectedDataHub(eventKey);
     };
 
 
-    function computeSelectedDataHubBindings(selectedDataHub){
+    async function computeSelectedDataHubBindings(selectedDataHub){
         
         const tmp_selectedDataHubBindings =[]
 
-        if(selectedDataHub.indexOf("ALL")>=0){
+        const p = new Promise((resolve, reject)=> {
 
-            console.log('bindings ', bindings)
+            console.log("promise filter table");
+            if(selectedDataHub.indexOf("ALL")>=0){
 
-            bindings.forEach( binding => {tmp_selectedDataHubBindings.push(binding)})
+                console.log('bindings ', bindings)
+    
+                bindings.forEach( binding => {tmp_selectedDataHubBindings.push(binding)})
+                
+                resolve(tmp_selectedDataHubBindings) ;
+                return;
+    
+            }
             
-            return tmp_selectedDataHubBindings ;
-
-        }
-        
-        
-        let idx = 0;
-        for(let i=0;i< bindings.length;i++){
-            const binding = bindings[i];
-            if(binding['provenance']!==undefined){
-                if(binding['provenance']['value']!==undefined){
-                    
-                    if(binding['provenance']['value'].indexOf(selectedDataHub)>=0){
-                        // if(binding['provenance']['value'].indexOf("HYDRO")>=0 && selectedDataHub.indexOf("HYDRO")<0){
-                        //     continue;
-                        // }
-                        tmp_selectedDataHubBindings.push(binding);
+            let idx = 0;
+            for(let i=0;i< bindings.length;i++){
+                const binding = bindings[i];
+                if(binding['provenance']!==undefined){
+                    if(binding['provenance']['value']!==undefined){
+                        
+                        
+                        if(binding['provenance']['value'].endsWith(selectedDataHub)){// previous method index failed with theia-land
+                            // if(binding['provenance']['value'].indexOf("HYDRO")>=0 && selectedDataHub.indexOf("HYDRO")<0){
+                            //     continue;
+                            // }
+                            tmp_selectedDataHubBindings.push(binding);
+                        }
                     }
                 }
             }
-        }
+            
+            resolve(tmp_selectedDataHubBindings);
+        }); 
 
-        return tmp_selectedDataHubBindings;
+        return p;
     }
 
 
@@ -225,7 +237,7 @@ export default function RetrievedDatasetVarTable({searchTerm, kbUri, setDatasetU
             
             fetchData().then(() =>{
                 setSelectedDataHub('ALL'); // if the term changes 
-                setSelectedDataHubBindings(computeSelectedDataHubBindings('ALL'));
+                //setSelectedDataHubBindings(computeSelectedDataHubBindings('ALL'));
              });
             
         },
@@ -238,8 +250,16 @@ export default function RetrievedDatasetVarTable({searchTerm, kbUri, setDatasetU
             if(searchTerm == ''){
                 return;
             }
-            console.log('selectedDataHub '+selectedDataHub);  
-            setSelectedDataHubBindings(computeSelectedDataHubBindings(selectedDataHub));
+            
+            console.log('selectedDataHub '+selectedDataHub); 
+
+            
+            computeSelectedDataHubBindings(selectedDataHub).then((tmp_selectedDataHubBindings)=>{
+                setSelectedDataHubBindings(tmp_selectedDataHubBindings);
+                //setLoadingTable(false);
+                
+            }); 
+            
            
        },
        [selectedDataHub]
@@ -264,7 +284,7 @@ export default function RetrievedDatasetVarTable({searchTerm, kbUri, setDatasetU
 
                 {searchTerm?(
                         <ul>
-                            <li>{searchTerm}</li>
+                            <li>{searchTerm}  </li>
                         </ul>
                     ):(
                         <></>
@@ -292,7 +312,7 @@ export default function RetrievedDatasetVarTable({searchTerm, kbUri, setDatasetU
                 <div style={{overflow:"scroll", width:"100%", maxHeight:"320px"}}>
                 {searchTerm!=''?(
                     varNames.length>0 ?(
-
+                            
                             <Card.Body >
 
                                 <Nav justify variant="pills" defaultActiveKey="ALL" onSelect={handleSelect}>
@@ -316,7 +336,7 @@ export default function RetrievedDatasetVarTable({searchTerm, kbUri, setDatasetU
                                     </Nav.Item>
                                     
                                 </Nav>
-
+                                
                                 <Table striped bordered hover responsive size='lg'  >
                                     <thead >
                                         {/* {varNames.map(v => <th text-align="center"> {`${v}(s)`} </th> )} */}
@@ -324,7 +344,6 @@ export default function RetrievedDatasetVarTable({searchTerm, kbUri, setDatasetU
                                         <th text-align="center">  num  </th>
                                         <th text-align="center"> Dataset metadata title  </th>
                                     </thead>
-                                    
                                     <tbody >
                                         
                                         {selectedDataHubBindings.map((binding,index) =>
@@ -339,13 +358,10 @@ export default function RetrievedDatasetVarTable({searchTerm, kbUri, setDatasetU
                                                     )
                                                 }
                                             </tr>
-
-
                                         )}
-                                        
                                     </tbody>
-                                    
                                 </Table>
+                            
                             </Card.Body> 
                         
                     ):(
