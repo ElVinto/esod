@@ -1,0 +1,45 @@
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+PREFIX ucmm: <http://purl.org/ucmm#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX dcat: <http://www.w3.org/ns/dcat#> 
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+
+SELECT DISTINCT ?datasetProp ?datasetPropVal
+WHERE{
+    {
+        VALUES ?datasetProp {dcterms:description dcterms:title dcat:keyword }
+        <http://example.org/3df904de-e47d-4bf9-85a0-7c0942aff8b6#dataset> rdf:type dcat:Dataset ;
+            ?datasetProp ?datasetPropVal.
+        FILTER ( 
+            regex(?datasetPropVal,"water temperature","i") 
+        )
+        FILTER (
+            lang(?datasetPropVal)="en"
+        )
+    }UNION{
+        VALUES ?datasetProp {dcterms:subject }
+        <http://example.org/3df904de-e47d-4bf9-85a0-7c0942aff8b6#dataset> rdf:type dcat:Dataset ;
+            ?datasetProp ?conceptMentioningSearchLabel. 
+        ?conceptMentioningSearchLabel skos:prefLabel ?datasetPropVal.
+
+        FILTER ( 
+            regex(?datasetPropVal,"water temperature","i") 
+        )
+        FILTER (
+            lang(?datasetPropVal)="en"
+        )
+    }UNION{
+        VALUES ?datasetProp { prov:wasGeneratedBy}
+        <http://example.org/3df904de-e47d-4bf9-85a0-7c0942aff8b6#dataset> rdf:type dcat:Dataset ;
+            (dcterms:description|dcterms:title|dcat:keyword) ?litMentioningTerm ;
+            ?datasetProp ?datasetPropVal.
+        FILTER ( 
+            regex(?litMentioningTerm,"water temperature","i") 
+        )
+        FILTER (
+            lang(?litMentioningTerm)="en"
+        )
+    }
+}
