@@ -1134,15 +1134,13 @@ export default function DatasetExplainedGraph ({kbUri, datasetUri, termInfo, wid
     return(
         <Card style={{ width:'100%', height}}>
         <Card.Header>
-                Explanatory Graph 
+                Explanatory Graph: <i style={{fontSize:'15px'}}> Semantic relations between the user query and the retrieved dataset'</i>
         </Card.Header>
        
             {datasetUri!='' && d3Graph.nodes.length>0?(
 
                 <div style={{ overflow:'scroll', textAlign:'center'}}>
                     <Card.Body>
-
-                        <div style={{fontSize:'16px'}}> Semantic relations between the user query and the retrieved dataset'</div>
 
                         <svg 
                             ref={svgRef}

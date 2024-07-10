@@ -24,13 +24,13 @@ const App = () => {
 
   const [searchTerm, setSearchTerm] = useState(''); 
 
-  const rdf4jRepositories = 'http://13.36.171.5:8009/rdf4j-server/repositories/';
+  //const rdf4jRepositories = 'http://13.36.171.5:8009/rdf4j-server/repositories/';
   // const kbUri = 'http://13.36.171.5:8009/rdf4j-server/repositories/ucmm_instance_graph';
-  const kbUri = 'http://13.36.171.5:8009/rdf4j-server/repositories/dataterra_kg';
+  //const kbUri = 'http://13.36.171.5:8009/rdf4j-server/repositories/dataterra_kg';
 
-  //const rdf4jRepositories = 'http://localhost:8080/rdf4j-server/repositories/';
+  const rdf4jRepositories = 'http://localhost:8080/rdf4j-server/repositories/';
   // const kbUri = 'http://localhost:8080/rdf4j-server/repositories/ucmm_instance_graph';
-  //const kbUri = 'http://localhost:8080/rdf4j-server/repositories/DataTerraKG';
+  const kbUri = 'http://localhost:8080/rdf4j-server/repositories/DataTerraKG';
   
 
   const [datasetUri, setDatasetUri] = useState('');
@@ -68,10 +68,10 @@ const App = () => {
         </div>
       </Row>
       <Row>
-        <div class="d-flex justify-content-center">
+        <p class="d-flex justify-content-center">
             Each data-hub, collects observations about a different Earth System Compartment respectively the Atmosphere ,the Solid Earth, the Continental Surfaces and the the Oceans. 
-            <br></br>
-        </div>  
+            
+        </p>  
       </Row>
 
       <Row className='gx-5'>
