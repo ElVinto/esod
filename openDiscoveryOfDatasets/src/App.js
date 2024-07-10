@@ -92,7 +92,7 @@ const App = () => {
         
         <Col lg={6} >
           <Row>
-              <DatasetExplainedGraph kbUri={kbUri} datasetUri={datasetUri} width={600} height={320} termInfo={{term:searchTerm}}></DatasetExplainedGraph>
+              <DatasetExplainedGraph kbUri={kbUri} datasetUri={datasetUri} width={700} height={320} termInfo={{term:searchTerm}}></DatasetExplainedGraph>
               {/* <DatasetDiscoveryExplainedSVGGraph_v2 kbUri={kbUri} width={800} height={600} termInfo={{term:searchTerm}}></DatasetDiscoveryExplainedSVGGraph_v2> */}
           </Row>
           <br></br>

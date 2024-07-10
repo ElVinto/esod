@@ -5,6 +5,8 @@ import React from 'react';
 import ForceUndirectedD3Graph from './ForceUndirectedD3Graph';
 import { getLocalUri, getGroupFromProvService, getMetaDataId, getGroupFromPrefixedUri, getGroupColor } from '../util/prefix_util';
 import { Card, Table } from 'react-bootstrap';
+import Spinner from 'react-bootstrap/Spinner';
+
 
 
 
@@ -1134,7 +1136,7 @@ export default function DatasetExplainedGraph ({kbUri, datasetUri, termInfo, wid
     return(
         <Card style={{ width:'100%', height}}>
         <Card.Header>
-                Explanatory Graph: <i style={{fontSize:'15px'}}> Semantic relations between the user query and the retrieved dataset'</i>
+                Explanatory Graph: <i style={{fontSize:'14px'}}> 'Semantic relations between the user query and a retrieved dataset'</i>
         </Card.Header>
        
             {datasetUri!='' && d3Graph.nodes.length>0?(
@@ -1142,7 +1144,7 @@ export default function DatasetExplainedGraph ({kbUri, datasetUri, termInfo, wid
                 <div style={{ overflow:'scroll', textAlign:'center'}}>
                     <Card.Body>
 
-                        <div style={{fontSize:'16px'}}> Semantic relations between the user query and the retrieved dataset</div>
+                        {/* <div style={{fontSize:'16px'}}> Semantic relations between the user query and the retrieved dataset</div> */}
 
                         <svg 
                             ref={svgRef}
@@ -1215,7 +1217,7 @@ export default function DatasetExplainedGraph ({kbUri, datasetUri, termInfo, wid
 
                         </p>
                     ):(
-                        <> </>
+                        <> <Spinner animation="border" variant="secondary" /></>
                     )
                     
                     }
