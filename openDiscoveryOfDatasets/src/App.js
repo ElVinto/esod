@@ -69,7 +69,7 @@ const App = () => {
       </Row>
       <Row>
         <div class="d-flex justify-content-center">
-            Each data-hub collects respectively observations about an Earth System Compartment: the Atmosphere ,the Solid Earth, the Continental Surfaces and the the Oceans. 
+            Each data-hub collects observations about an Earth System Compartment: the Atmosphere ,the Solid Earth, the Continental Surfaces and the the Oceans. 
             <br></br>
         </div>  
       </Row>
