@@ -95,7 +95,7 @@ export default function RetrievedDatasetVarTable({searchTerm, kbUri, setDatasetU
 
             setFetchingData(true)
 
-            console.log(` fetchData()`)
+            console.log(` fetchData(${searchTerm})`)
             console.log('  composeQuery : ',composeQuery());
 
             const response = await fetch(kbUri,{
@@ -195,9 +195,9 @@ export default function RetrievedDatasetVarTable({searchTerm, kbUri, setDatasetU
                 if(binding['provenance']['value']!==undefined){
                     
                     if(binding['provenance']['value'].indexOf(selectedDataHub)>=0){
-                        if(binding['provenance']['value'].indexOf("HYDRO")>=0 && selectedDataHub.indexOf("HYDRO")<0){
-                            continue;
-                        }
+                        // if(binding['provenance']['value'].indexOf("HYDRO")>=0 && selectedDataHub.indexOf("HYDRO")<0){
+                        //     continue;
+                        // }
                         tmp_selectedDataHubBindings.push(binding);
                     }
                 }
@@ -218,10 +218,13 @@ export default function RetrievedDatasetVarTable({searchTerm, kbUri, setDatasetU
             // console.log(`useEffect RetrieveDatasetVarTable`)
             // console.log(' kbUri : ',kbUri);
             // console.log(' searchTerm : ',searchTerm);
-
+            console.log(' clean bindings ');
+            setBindings([]);
+            setSelectedDataHub('None'); // hack
+            setSelectedDataHubBindings([]); // hack
             
             fetchData().then(() =>{
-                setSelectedDataHub('ALL')
+                setSelectedDataHub('ALL'); // if the term changes 
                 setSelectedDataHubBindings(computeSelectedDataHubBindings('ALL'));
              });
             
@@ -235,6 +238,7 @@ export default function RetrievedDatasetVarTable({searchTerm, kbUri, setDatasetU
             if(searchTerm == ''){
                 return;
             }
+            console.log('selectedDataHub '+selectedDataHub);  
             setSelectedDataHubBindings(computeSelectedDataHubBindings(selectedDataHub));
            
        },
@@ -247,7 +251,7 @@ export default function RetrievedDatasetVarTable({searchTerm, kbUri, setDatasetU
         if(searchTerm == ''){
             return;
         }
-        console.log('selectedDataHubBindings '+selectedDataHubBindings)       
+        console.log('selectedDataHubBindings '+selectedDataHubBindings);       
    },
    [selectedDataHubBindings]
 );
@@ -302,10 +306,10 @@ export default function RetrievedDatasetVarTable({searchTerm, kbUri, setDatasetU
                                         <Nav.Link eventKey="FORMATER" style={{color:'#c30'}}>FORMATER</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
-                                        <Nav.Link eventKey="THEAI" style={{color:'#f00'}}>THEAI-LAND</Nav.Link>
+                                        <Nav.Link eventKey="THEIA" style={{color:'#f00'}}>THEIA-OZCAR</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
-                                        <Nav.Link eventKey="THEAI-HYDRO" style={{color:'#36C'}}>THEAI-HYDRO</Nav.Link>
+                                        <Nav.Link eventKey="THEIA-HYDRO" style={{color:'#36C'}}>THEAI-HYDRO</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
                                         <Nav.Link eventKey="ODATIS" style={{color:'#039'}}>ODATIS</Nav.Link>

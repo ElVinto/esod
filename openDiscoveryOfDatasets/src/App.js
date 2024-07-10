@@ -28,6 +28,10 @@ const App = () => {
   // const kbUri = 'http://13.36.171.5:8009/rdf4j-server/repositories/ucmm_instance_graph';
   const kbUri = 'http://13.36.171.5:8009/rdf4j-server/repositories/dataterra_kg';
 
+  //const rdf4jRepositories = 'http://localhost:8080/rdf4j-server/repositories/';
+  // const kbUri = 'http://localhost:8080/rdf4j-server/repositories/ucmm_instance_graph';
+  //const kbUri = 'http://localhost:8080/rdf4j-server/repositories/DataTerraKG';
+  
 
   const [datasetUri, setDatasetUri] = useState('');
 
@@ -37,6 +41,7 @@ const App = () => {
   useEffect(
     ()=>{
       setDatasetUri('');
+      console.log('search term update', searchTerm)
     },
     [searchTerm]
   )
@@ -126,7 +131,14 @@ export default App;
 npm run build && ssh -i ~/.ssh/portableHP.pem ec2-user@13.38.36.148 'rm -rf ~/tomcat9/webapps/ReactRestApiCall/*' && scp -r -i ~/.ssh/portableHP.pem ./build/* ec2-user@13.38.36.148:~/tomcat9/webapps/ReactRestApiCall/
 */
 
-/* Test
+/* Test Felipe
+  npm run build &&
+  sudo rm -rf  /opt/tomcat9/webapps/earthObservationDatasetOpenDiscovery/ &&
+  sudo mkdir   /opt/tomcat9/webapps/earthObservationDatasetOpenDiscovery/ &&
+  sudo cp -R build/*   /opt/tomcat9/webapps/earthObservationDatasetOpenDiscovery/ 
+*/
+
+/* Test 
   npm run build &&
   rm -rf ~/workspace/tomcat/tomcat9/apache-tomcat-9.0.85_v2/webapps/earthObservationDatasetOpenDiscovery &&
   mkdir  ~/workspace/tomcat/tomcat9/apache-tomcat-9.0.85_v2/webapps/earthObservationDatasetOpenDiscovery &&
