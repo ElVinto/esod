@@ -1142,7 +1142,7 @@ export default function DatasetExplainedGraph ({kbUri, datasetUri, termInfo, wid
                 <div style={{ overflow:'scroll', textAlign:'center'}}>
                     <Card.Body>
 
-                        <div style={{fontSize:'16px'}}> Semantic relations between the user query and the retrieved dataset'</div>
+                        <div style={{fontSize:'16px'}}> Semantic relations between the user query and the retrieved dataset</div>
 
                         <svg 
                             ref={svgRef}
@@ -1172,14 +1172,14 @@ export default function DatasetExplainedGraph ({kbUri, datasetUri, termInfo, wid
                             <td>
                                 <ul  style={{ listStyleType:'square', fontSize:'30px', color:'#f00'}}>
                                     <li>
-                                        <span style={{fontSize:'15px', color:'black'}}>THEAI-land</span>
+                                        <span style={{fontSize:'15px', color:'black'}}>THEIA-OZCAR  </span>
                                     </li>
                                 </ul>
                             </td>
                             <td>
                                 <ul  style={{ listStyleType:'square', fontSize:'30px', color:'#36C'}}>
                                     <li>
-                                        <span style={{fontSize:'15px', color:'black'}}>THEAI-hydro</span>
+                                        <span style={{fontSize:'15px', color:'black'}}>THEIA-HYDRO</span>
                                     </li>
                                 </ul>
                             </td>

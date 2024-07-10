@@ -306,10 +306,10 @@ export default function LinkedSearchDatasetVarTable({linkedSearchPathList, searc
                                         <Nav.Link eventKey="FORMATER" style={{color:'#c30'}}>FORMATER</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
-                                        <Nav.Link eventKey="THEAI" style={{color:'#f00'}}>THEAI-LAND</Nav.Link>
+                                        <Nav.Link eventKey="THEAI" style={{color:'#f00'}}>THEIA-OZCAR</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
-                                        <Nav.Link eventKey="THEAI-HYDRO" style={{color:'#36C'}}>THEAI-HYDRO</Nav.Link>
+                                        <Nav.Link eventKey="THEAI-HYDRO" style={{color:'#36C'}}>THEIA-HYDRO</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
                                         <Nav.Link eventKey="ODATIS" style={{color:'#039'}}>ODATIS</Nav.Link>

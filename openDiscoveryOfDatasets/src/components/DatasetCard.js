@@ -137,7 +137,11 @@ export default function DatasetCard({datasetUri,kbUri}){
                         (
                             <>
                                 <dt> description:</dt>
-                                <dd> {datasetInfo['dcterms:description']}</dd>
+                                <dd> 
+                                    <div style={{overflow:"scroll", width:"100%", maxHeight:"350px"}}>
+                                    {datasetInfo['dcterms:description']}
+                                    </div>
+                                </dd>
                             </>
                         ):(
                             <></>

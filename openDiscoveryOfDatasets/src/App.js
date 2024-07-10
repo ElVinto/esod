@@ -60,7 +60,7 @@ const App = () => {
             This prototype search engine merges dataset metadata from four &nbsp; <a href='https://www.data-terra.org/en/' target="_blank" rel="noopener noreferrer"> DATA TERRA </a>'s &nbsp; data-hubs: &nbsp;
               <a href='https://www.aeris-data.fr/en/catalogue-en/' target="_blank" rel="noopener noreferrer" >AERIS</a>, &nbsp; 
                < a href='https://en.poleterresolide.fr/data-access/catalog/#/' target="_blank" rel="noopener noreferrer" >FORMATER</a>, &nbsp;  
-               < a href='https://catalogue.theia-land.fr' target="_blank" rel="noopener noreferrer" >THEAI</a>, &nbsp; 
+               < a href='https://catalogue.theia-land.fr' target="_blank" rel="noopener noreferrer" >THEIA</a>, &nbsp; 
                < a href='https://www.odatis-ocean.fr/en/' target="_blank" rel="noopener noreferrer" >ODATIS</a>
               . 
               {/* Each data-hub collects observations about a different Earth System Compartment respectively, the Atmosphere, the Oceans, the Solid Earth and the Continental Surfaces.   */}
@@ -69,7 +69,7 @@ const App = () => {
       </Row>
       <Row>
         <div class="d-flex justify-content-center">
-            Each data-hub, collects observations about a different Earth System Compartment respectively the Atmosphere ,the Solid Earth, the Continental Surfaces and the the Oceans. 
+            Each data-hub collects respectively observations about an Earth System Compartment: the Atmosphere ,the Solid Earth, the Continental Surfaces and the the Oceans. 
             <br></br>
         </div>  
       </Row>
