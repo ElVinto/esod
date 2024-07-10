@@ -309,7 +309,7 @@ export default function RetrievedDatasetVarTable({searchTerm, kbUri, setDatasetU
                                         <Nav.Link eventKey="THEIA" style={{color:'#f00'}}>THEIA-OZCAR</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
-                                        <Nav.Link eventKey="THEIA-HYDRO" style={{color:'#36C'}}>THEAI-HYDRO</Nav.Link>
+                                        <Nav.Link eventKey="THEIA-HYDRO" style={{color:'#36C'}}>THEIA-HYDRO</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
                                         <Nav.Link eventKey="ODATIS" style={{color:'#039'}}>ODATIS</Nav.Link>
